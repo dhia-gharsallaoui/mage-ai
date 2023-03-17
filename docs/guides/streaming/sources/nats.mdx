@@ -1,0 +1,66 @@
+---
+title: "Nats"
+---
+
+# NATS Data Source Configuration
+
+## Overview
+
+This document provides instructions for configuring a NATS data source to be used with your streaming pipeline. The NATS data source allows you to ingest data from a NATS message broker into your pipeline, and process it as needed.
+
+## Prerequisites
+
+Before you can use the NATS data source, you must have a running NATS server that your application can connect to. The NATS server can be installed on your local machine, on a remote server, or in a containerized environment. You will need to specify the URL of the NATS server in your configuration file, as described in the "servers" field in the Configuration section.
+
+## Configuration
+
+The NATS data source is configured using a YAML configuration file. The following fields are required:
+
+```yaml
+connector_type: nats
+servers: "localhost:4222"
+subject: subject_name
+batch_size: 100
+```
+
+- `connector_type`: This field specifies the type of connector to use. In this case, it should be set to nats.
+- `servers`: This field specifies the list of NATS servers to connect to. In this example, we are connecting to a single server running on localhost and listening on port 4222.
+- `subject`: This field specifies the NATS subject to consume messages from.
+- `batch_size`: (Optional default=100) This field specifies the number of messages to consume in each batch.
+
+## TLS Configuration
+
+If your NATS server is configured to use TLS, you can enable TLS support by uncommenting the following lines:
+
+```yaml
+tls_config:
+  ca_file: "CARoot.pem"
+  cert_file: "certificate.pem"
+  key_file: "key.pem"
+  ```
+- `ca_file`: This field specifies the path to the CA certificate file.
+- `cert_file`: This field specifies the path to the client certificate file.
+- `key_file`: This field specifies the path to the client private key file.
+
+## User Credentials
+
+To pass user credentials for authentication with NATS, you can use either a credentials file or a username/password combination. Uncomment the user_credentials block in the YAML file to enable user authentication.
+
+### Using a Credentials File
+If you have a credentials file containing the necessary information for authentication, you can specify its path in the YAML file like this:
+```yaml
+
+user_credentials:
+  user_credentials_file: "/path/to/secret.creds"
+  ```
+Make sure to replace `/path/to/secret.creds` with the actual path to your credentials file.
+
+### Using a Username/Password Combination
+Alternatively, you can specify the username and password directly in the YAML file like this:
+```yaml
+
+user_credentials:
+  username: myusername
+  password: mypassword
+  ```
+

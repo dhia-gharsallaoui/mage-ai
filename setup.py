@@ -87,6 +87,7 @@ setuptools.setup(
         ],
         'streaming': [
             'kafka-python==2.0.2',
+            'nats-py==2.2.0',
             'opensearch-py==2.0.0',
             'pika==1.3.1',
             'requests_aws4auth==1.1.2',

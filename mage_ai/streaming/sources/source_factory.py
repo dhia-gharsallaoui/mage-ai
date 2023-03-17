@@ -18,6 +18,9 @@ class SourceFactory:
         elif connector_type == SourceType.RABBITMQ:
             from mage_ai.streaming.sources.rabbitmq import RabbitMQSource
             return RabbitMQSource(config, **kwargs)
+        elif connector_type == SourceType.NATS:
+            from mage_ai.streaming.sources.nats import NatsSource
+            return NatsSource(config, **kwargs)
         raise Exception(
             f'Consuming data from {connector_type} is not supported in streaming pipelines yet.',
         )

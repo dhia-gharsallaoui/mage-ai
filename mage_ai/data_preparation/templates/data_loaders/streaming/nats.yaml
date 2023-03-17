@@ -1,0 +1,16 @@
+connector_type: nats
+servers: "localhost:4222"
+subject: subject_name
+batch_size: 100
+
+# Uncomment the config below to use TLS
+# tls_config:
+#   ca_file: "CARoot.pem"
+#   cert_file: "certificate.pem"
+#   key_file: "key.pem"
+
+# Uncomment the config below to pass your credentials
+# user_credentials:
+#   user_credentials_file: "/path/to/secret.creds"
+#   username: username
+#   password: password
